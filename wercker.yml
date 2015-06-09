@@ -44,7 +44,7 @@ build:
         code: |
           go test ./...
     - script:
-        name: copy binary to WERCKER_OUTPUT
+        name: copy binary to WERCKER_OUTPUT_DIR
         code: cp app "$WERCKER_OUTPUT_DIR"
 
 deploy:
@@ -57,7 +57,7 @@ deploy:
         PORT: 5000
       cmd: /app
       tag: $WERCKER_GIT_COMMIT
-      ports: $PORT
+      ports: "$PORT"
       repository: quay.io/mies/scratch-container
       registry: https://quay.io
   
