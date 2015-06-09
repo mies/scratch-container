@@ -50,14 +50,14 @@ build:
 deploy:
   box: google/golang
   steps:
-  - internal/docker-scratch-push:
-      username: $QUAY_USERNAME
-      password: $QUAY_PASSWORD
-      env:
-        PORT: 5000
-      cmd: /app
-      tag: $WERCKER_GIT_COMMIT
-      ports: "$PORT"
-      repository: quay.io/mies/scratch-container
-      registry: https://quay.io
-  
+    - internal/docker-push:
+        username: $QUAY_USERNAME
+        password: $QUAY_PASSWORD
+        env:
+          PORT: 5000
+        cmd: /app
+        tag: $WERCKER_GIT_COMMIT
+        ports: "$PORT"
+        repository: quay.io/mies/scratch-container
+        registry: https://quay.io
+    
