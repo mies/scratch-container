@@ -16,7 +16,7 @@ build:
 # If you want Google's container you would reference google/golang
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
-box: google/golang
+  box: google/golang
   # The steps that will be executed on build
   # Steps make up the actions in your pipeline
   # Read more about steps on our dev center:
@@ -48,16 +48,16 @@ box: google/golang
         code: cp app "$WERCKER_OUTPUT_DIR"
 
 deploy:
-    box: google/golang
-    steps:
-    - internal/docker-scratch-push:
-        username: $QUAY_USERNAME
-        password: $QUAY_PASSWORD
-        env:
-          PORT: 5000
-        cmd: /app
-        tag: $WERCKER_GIT_COMMIT
-        ports: $PORT
-        repository: quay.io/mies/scratch-container
-        registry: https://quay.io
+  box: google/golang
+  steps:
+  - internal/docker-scratch-push:
+      username: $QUAY_USERNAME
+      password: $QUAY_PASSWORD
+      env:
+        PORT: 5000
+      cmd: /app
+      tag: $WERCKER_GIT_COMMIT
+      ports: $PORT
+      repository: quay.io/mies/scratch-container
+      registry: https://quay.io
   
