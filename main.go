@@ -7,9 +7,14 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
+	for _, e := range os.Environ() {
+		pair := strings.Split(e, "=")
+		fmt.Println(pair[0])
+	}
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
 	http.Handle("/", r)
